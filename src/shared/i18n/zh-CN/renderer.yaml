@@ -10,7 +10,7 @@ AnnouncementModal:
   noAnnouncementMd: |
     ***暂无公告***
 
-    或查询 [GitHub](https://github.com/LeagueAkari/LeagueAkari-Config/tree/main/announcement)
+    或查询 [GitHub](https://github.com/963656544/LeagueGanYu)
 
 DeclarationModal:
   title: 声明
@@ -89,7 +89,7 @@ TrafficButtons:
   close: 关闭
 
   modal:
-    title: 退出 League Akari
+    title: 退出 LeagueGanYu
     options:
       minimize-to-tray: 最小化到托盘区
       quit: 退出应用
@@ -189,7 +189,7 @@ AppSettings:
 
     useProfileSkinAsBackground:
       label: 使用生涯皮肤背景
-      description: League Akari 将使用当前玩家的生涯背景皮肤作为背景。当背景材质被设置时，该选项将被不会生效
+      description: LeagueGanYu 将使用当前玩家的生涯背景皮肤作为背景。当背景材质被设置时，该选项将被不会生效
 
   lcConnection:
     title: LCU 连接
@@ -472,8 +472,8 @@ MiscSettings:
       description: 启用直播模式，将隐藏所有敏感信息 (玩家 ID，区服等)
 
     useAkariStyledName:
-      label: 使用 Akari 风格的名字
-      description: 使用 Akari 风格的占位名字
+      label: 使用 GanYu 风格的名字
+      description: 使用 GanYu 风格的占位名字
 
 DebugSettings:
   title: 调试
@@ -488,7 +488,7 @@ DebugSettings:
 
     reload:
       label: 页面重载
-      description: 刷新 League Akari 用户界面
+      description: 刷新 LeagueGanYu 用户界面
       button: 重新加载页面
 
   files:
@@ -504,7 +504,7 @@ DebugSettings:
       popoverTrigger: 详情
       button: 应用目录
       description:
-        part1: 打开 League Akari 应用文件存储目录。该目录为应用数据存储位置，在应用第一次运行时生成。删除此目录将丢失所有已存储的内容
+        part1: 打开 LeagueGanYu 应用文件存储目录。该目录为应用数据存储位置，在应用第一次运行时生成。删除此目录将丢失所有已存储的内容
         part2: 存储用户设置、已标记的玩家等信息
         part3: 即将进行的自动更新临时文件
         part4: 一些可以替换的设置项文件
@@ -553,7 +553,7 @@ DebugSettings:
     TerminatedInError: '错误终止'
 
   inAdministrator:
-    description: League Akari 目前以管理员权限运行。现在，它是 League Akari X。
+    description: LeagueGanYu 目前以管理员权限运行。现在，它是 LeagueGanYu X。
 
   kyokoMode:
     label: Kyoko 模式
@@ -631,7 +631,7 @@ TaggedPlayers:
 
 AboutPane:
   title: 关于
-  line1: ' (联盟阿卡林，Version {{version}}) 是开源软件，专注于提供一些额外的功能，以辅助英雄联盟的游戏体验，其几乎所有实现都依赖'
+  line1: ' (LeagueGanYu，Version {{version}}) 是开源软件，专注于提供一些额外的功能，以辅助英雄联盟的游戏体验，其几乎所有实现都依赖'
   line2: 项目参考
   copyright: © 2025 Hanxven. 本软件为开源软件，遵循 GPL-3.0 许可证。
 
@@ -1733,7 +1733,7 @@ AuxWindowTitleBar:
   close: 关闭
   minimize: 最小化
   indicator: 小窗
-  indicatorTitle: League Akari 的小型辅助功能窗口
+  indicatorTitle: LeagueGanYu 的小型辅助功能窗口
   pin: 置顶
   unpin: 取消置顶
   repositionToAlignLeagueClientUx: 贴附到客户端
@@ -1913,8 +1913,8 @@ Opgg:
   loadChampionFailedMessage: 获取英雄数据失败：{{reason}}
   setSpellsFailedMessage: 设置召唤师技能失败：{{reason}}
   setRunesFailedMessage: 设置符文配法失败：{{reason}}
-  spellsSet: '[League Akari] 已设置召唤师技能: {{spell1}} | {{spell2}}'
-  runesSet: '[League Akari] 已{{action}}符文配法: {{name}}'
+  spellsSet: '[LeagueGanYu] 已设置召唤师技能: {{spell1}} | {{spell2}}'
+  runesSet: '[LeagueGanYu] 已{{action}}符文配法: {{name}}'
 
   modes:
     ranked: '排位'
@@ -2006,7 +2006,7 @@ OpggChampion:
   augmentPrism: 棱彩阶
   synergies: 搭配
 
-  writeToDisk: '[League Akari] 已写入到装备方案：{{name}}'
+  writeToDisk: '[LeagueGanYu] 已写入到装备方案：{{name}}'
   writtenToDisk: 已写入到文件中
   writeFileFailedMessage: 写入文件失败 {{reason}}
   bootsDesc: 鞋子 (按出场率排序)
@@ -2265,7 +2265,7 @@ league-client-renderer:
 
 self-update-renderer:
   self-update-task:
-    name: League Akari 更新
+    name: LeagueGanYu 更新
     downloading: 正在下载更新包 {{progress}}% ({{avgSpeed}}/s, 剩余 {{eta}})
     download-failed: 下载更新包失败
     unpacking: 正在解压更新包 {{progress}}%

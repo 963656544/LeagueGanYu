@@ -8,7 +8,7 @@ AnnouncementModal:
   noAnnouncementMd: |
     ***No announcement***
 
-    or check [GitHub](https://github.com/LeagueAkari/LeagueAkari-Config/tree/main/announcement)
+    or check [GitHub](https://github.com/963656544/LeagueGanYu)
 
 DeclarationModal:
   title: Declaration
@@ -88,7 +88,7 @@ TrafficButtons:
   close: Close
 
   modal:
-    title: Quit League Akari
+    title: Quit LeagueGanYu
     options:
       minimize-to-tray: Minimize to tray
       quit: Quit
@@ -1908,8 +1908,8 @@ Opgg:
   loadChampionFailedMessage: 'Failed to fetch champion data: {{reason}}'
   setSpellsFailedMessage: 'Failed to set summoner spells: {{reason}}'
   setRunesFailedMessage: 'Failed to set rune builds: {{reason}}'
-  spellsSet: '[League Akari] Summoner spells set: [OP.GG] {{spell1}} | {{spell2}}'
-  runesSet: '[League Akari] {{action}} rune build: {{name}}'
+  spellsSet: '[LeagueGanYu] Summoner spells set: [OP.GG] {{spell1}} | {{spell2}}'
+  runesSet: '[LeagueGanYu] {{action}} rune build: {{name}}'
 
   modes:
     ranked: 'Ranked'
@@ -2001,7 +2001,7 @@ OpggChampion:
   augmentPrism: Prism
   synergies: Synergies
 
-  writeToDisk: '[League Akari] Written to item build: {{name}}'
+  writeToDisk: '[LeagueGanYu] Written to item build: {{name}}'
   writtenToDisk: Successfully written to file
   writeFileFailedMessage: Failed to write file {{reason}}
   bootsDesc: Boots (sorted by pick rate)

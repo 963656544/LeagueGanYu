@@ -97,7 +97,7 @@ const settingModelTab = ref('basic')
 
 app.onSecondInstance(() => {
   notification.info({
-    title: 'League Akari',
+    title: 'LeagueGanYu',
     content: () => t('app.singleton'),
     duration: 10000
   })
@@ -121,7 +121,7 @@ const FIRST_LAUNCH_KEY = 'akari-credit-notice-shown'
 const showFirstLaunchModal = ref(false)
 
 function openAkariRepo() {
-  window.open('https://github.com/LeagueAkari/LeagueAkari')
+  window.open('https://github.com/963656544/LeagueGanYu')
 }
 
 function confirmAkariNotice() {

@@ -7,7 +7,7 @@
       title="该项目完全基于 League Akari 二次开发，点击访问其 GitHub 仓库"
       @click="openAkari"
     >
-      ❤ 基于 League Akari
+      ❤ 基于 League Akari（已 fork 为 LeagueGanYu）
     </span>
     <div class="divider" :class="{ invisible: !shouldShowDivider }" />
     <div class="shard-area">
@@ -50,7 +50,7 @@ const mhs = useMatchHistoryTabsStore()
 const { t } = useTranslation('common')
 
 function openAkari() {
-  window.open('https://github.com/LeagueAkari/LeagueAkari')
+  window.open('https://github.com/963656544/LeagueGanYu')
 }
 
 const shouldShowDivider = computed(() => {

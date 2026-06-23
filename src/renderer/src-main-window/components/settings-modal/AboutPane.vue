@@ -14,8 +14,8 @@
       >
         <img
           style="height: 160px; width: 160px"
-          src="@renderer-shared/assets/logo/logo-hollow.svg"
-          alt="Logo of League Akari"
+          src="@renderer-shared/assets/logo/LeagueGanYu.jpg"
+          alt="Logo of LeagueGanYu"
         />
       </div>
       <div class="about-para">
@@ -34,12 +34,12 @@
       <div class="about-para-2">
         <span style="margin-right: 4px">GitHub: </span>
         <a target="_blank" :href="LEAGUE_AKARI_GITHUB" style="text-indent: 0; margin-right: 8px"
-          >League Akari</a
+          >LeagueGanYu</a
         >
         <a target="_blank" :href="LEAGUE_AKARI_GITHUB">
           <img
             alt="GitHub Repo stars"
-            src="https://img.shields.io/github/stars/LeagueAkari/LeagueAkari"
+            src="https://img.shields.io/github/stars/963656544/LeagueGanYu"
         /></a>
       </div>
     </NScrollbar>

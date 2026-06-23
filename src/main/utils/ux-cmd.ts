@@ -48,7 +48,7 @@ export function checkWmicAvailability() {
   const isExists = fs.existsSync(WMIC_PATH)
   if (!isExists) {
     throw new Error(
-      'WMIC unavailable, League Akari relies on this tool to obtain process information'
+      'WMIC unavailable, LeagueGanYu relies on this tool to obtain process information'
     )
   }
 }

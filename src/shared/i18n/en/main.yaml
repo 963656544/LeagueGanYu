@@ -11,7 +11,7 @@ tray:
   adjustAllWindowPositions: Adjust All Window Positions
 
 windowOpenHandler:
-  toAkari: To League Akari GitHub ❤️
+  toAkari: To LeagueGanYu GitHub ❤️
   toExternalLink: To external site {{target}}
 
 auto-gameflow-main:
@@ -45,7 +45,7 @@ auto-select-main:
 
 self-update-main:
   title: Self Update
-  start-update: Starting update League Akari
+  start-update: Starting update LeagueGanYu
   updateOnNextStartup: Updated Applied. Restart the application to apply the update
   lastUpdateFailed: The last update failed, please <a href="{{url}}" target="_blank">update the application manually</a>
   lastUpdateSuccess: Updated to {{version}}
@@ -115,4 +115,4 @@ in-game-send-main:
   newSendableItem: New Sendable Item {{index}}
 
 app:
-  singleton: Because Akari is unique, there can only be ONE Akari at a time
+  singleton: Because LeagueGanYu is unique, there can only be ONE LeagueGanYu at a time

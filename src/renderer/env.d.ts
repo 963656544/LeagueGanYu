@@ -6,3 +6,12 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+declare module 'i18next-vue' {
+  import type { i18n } from 'i18next'
+
+  export function useTranslation(ns?: string, options?: Record<string, unknown>): {
+    i18next: i18n
+    t: (key: string, params?: Record<string, unknown>) => string
+  }
+}

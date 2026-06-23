@@ -6,14 +6,6 @@
           <NIcon class="title-icon"><PeopleTeamIcon /></NIcon>
           <span class="title-label">{{ t('QQAccount.title') }}</span>
         </div>
-        <div class="title-actions" v-show="currentTab === 'accounts'">
-          <NButton size="small" type="warning" @click="handleBatchBanAll" :loading="bulkBanLoading">
-            {{ t('QQAccount.action.batchBanAll') }}
-          </NButton>
-          <NButton size="small" type="info" @click="handleBatchRankAll" :loading="bulkRankLoading">
-            {{ t('QQAccount.action.batchRankAll') }}
-          </NButton>
-        </div>
       </div>
       <NTabs v-model:value="currentTab" size="medium">
         <NTab name="accounts" :tab="t('QQAccount.tab.accounts')" />
@@ -52,17 +44,31 @@
           <NButton @click="loadAccounts" :loading="loading">
             {{ t('QQAccount.action.refresh') }}
           </NButton>
+          <NButton size="small" type="warning" @click="handleBatchBanAll" :loading="bulkBanLoading">
+            {{ t('QQAccount.action.batchBanAll') }}
+          </NButton>
+          <NButton size="small" type="info" @click="handleBatchRankAll" :loading="bulkRankLoading">
+            {{ t('QQAccount.action.batchRankAll') }}
+          </NButton>
         </div>
 
-        <NDataTable
-          :columns="columns"
-          :data="accounts"
-          :bordered="false"
-          :loading="loading"
-          size="small"
-          :row-key="(row: QQAccountDto) => row.id"
+        <div
           class="accounts-table"
-        />
+          @dragstart="onRowDragStart"
+          @dragover="onRowDragOver"
+          @drop="onRowDrop"
+          @dragend="onRowDragEnd"
+        >
+          <NDataTable
+            :columns="columns"
+            :data="accounts"
+            :bordered="false"
+            :loading="loading"
+            size="small"
+            :row-key="(row: QQAccountDto) => row.id"
+            :row-props="rowProps"
+          />
+        </div>
       </div>
 
       <!-- 單個封禁查詢 -->
@@ -390,12 +396,84 @@ async function handleBatchRankAll() {
 }
 
 // ===== 表格列 =====
+const dragIndex = ref(-1)
+
+function rowProps(_row: QQAccountDto, index: number) {
+  return {
+    draggable: true as any,
+    'data-row-index': index
+  }
+}
+
+function onRowDragStart(e: DragEvent) {
+  const tr = (e.target as HTMLElement).closest('tr')
+  if (!tr) return
+  dragIndex.value = parseInt(tr.dataset.rowIndex || '-1')
+  if (e.dataTransfer) {
+    e.dataTransfer.effectAllowed = 'move'
+    e.dataTransfer.setData('text/plain', '')
+  }
+}
+
+function onRowDragOver(e: DragEvent) {
+  e.preventDefault()
+  if (e.dataTransfer) e.dataTransfer.dropEffect = 'move'
+}
+
+async function onRowDrop(e: DragEvent) {
+  e.preventDefault()
+  const tr = (e.target as HTMLElement).closest('tr')
+  if (!tr || dragIndex.value < 0) return
+  const dropIdx = parseInt(tr.dataset.rowIndex || '-1')
+  if (dropIdx < 0 || dropIdx === dragIndex.value) {
+    dragIndex.value = -1
+    return
+  }
+  const items = [...accounts.value]
+  const [moved] = items.splice(dragIndex.value, 1)
+  items.splice(dropIdx, 0, moved)
+  accounts.value = items
+  dragIndex.value = -1
+  try {
+    await qqAccount.reorderAccounts(items.map((a) => a.id))
+  } catch (err: any) {
+    message.error(err?.message || String(err))
+    await loadAccounts()
+  }
+}
+
+function onRowDragEnd() {
+  dragIndex.value = -1
+}
+
 const columns = computed<DataTableColumns<QQAccountDto>>(() => [
+  {
+    title: '',
+    key: 'drag-handle',
+    width: 36,
+    render: () =>
+      h('span', { class: 'drag-handle-icon', innerHTML: '&#x2630;' })
+  },
   {
     title: 'QQ',
     key: 'qq',
     width: 140,
-    render: (row) => h('span', { class: 'mono' }, row.qq)
+    render: (row) =>
+      h(
+        'span',
+        {
+          class: 'mono clickable',
+          style: 'cursor: pointer; text-decoration: underline dotted rgba(160,160,160,0.5)',
+          title: '点击复制',
+          onClick: () => {
+            navigator.clipboard.writeText(row.qq).then(
+              () => message.success(t('QQAccount.msg.copied')),
+              () => message.error(t('QQAccount.msg.copyFailed'))
+            )
+          }
+        },
+        row.qq
+      )
   },
   {
     title: t('QQAccount.col.status'),
@@ -599,11 +677,6 @@ onMounted(() => {
         font-weight: 600;
       }
     }
-
-    .title-actions {
-      display: flex;
-      gap: 8px;
-    }
   }
 }
 
@@ -630,6 +703,26 @@ onMounted(() => {
 .accounts-table {
   flex: 1;
   min-height: 0;
+
+  :deep(.drag-handle-icon) {
+    cursor: grab;
+    color: rgba(160, 160, 160, 0.6);
+    font-size: 16px;
+    line-height: 1;
+    user-select: none;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  :deep(tr[draggable='true']) {
+    cursor: default;
+
+    &.drag-over {
+      background: rgba(100, 180, 255, 0.1);
+    }
+  }
 }
 
 :deep(.action-cell) {
