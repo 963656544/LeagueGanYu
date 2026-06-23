@@ -25,10 +25,10 @@
 
 | 版本 | 文件 | 大小 |
 |------|------|------|
-| 单文件版 | `LeagueGanYu-1.3.7-1-portable.exe` | ~85 MB |
-| 压缩包 | `LeagueGanYu-1.3.7-1-portable.zip` | ~128 MB |
+| 安装版 | `LeagueGanYu-1.3.7-1-Setup.exe` | ~96 MB |
+| 免安装版 | `LeagueGanYu-1.3.7-1-portable.zip` | ~128 MB |
 
-单文件版下载即可运行，压缩包解压后运行 `LeagueGanYu.exe`。
+安装版一键安装后启动更快，免安装版解压后运行 `LeagueGanYu.exe`。
 
 ### v1.3.7-1 更新内容
 
