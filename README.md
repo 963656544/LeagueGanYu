@@ -19,6 +19,17 @@
   </a>
 </p>
 
+## 下载
+
+前往 [Releases](https://github.com/963656544/LeagueGanYu/releases) 页面下载最新版本：
+
+| 版本 | 文件 | 大小 |
+|------|------|------|
+| 安装版 | `LeagueGanYu-1.3.7-Setup.exe` | ~96 MB |
+| 免安装版 | `LeagueGanYu-1.3.7-portable.7z` | ~85 MB |
+
+解压即用版下载后解压，运行 `LeagueGanYu.exe` 即可。
+
 ---
 
 ## 关于本项目
