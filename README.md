@@ -25,10 +25,18 @@
 
 | 版本 | 文件 | 大小 |
 |------|------|------|
-| 安装版 | `LeagueGanYu-1.3.7-Setup.exe` | ~96 MB |
-| 免安装版 | `LeagueGanYu-1.3.7-portable.7z` | ~85 MB |
+| 单文件版 | `LeagueGanYu-1.3.7-1-portable.exe` | ~85 MB |
+| 压缩包 | `LeagueGanYu-1.3.7-1-portable.zip` | ~128 MB |
 
-解压即用版下载后解压，运行 `LeagueGanYu.exe` 即可。
+单文件版下载即可运行，压缩包解压后运行 `LeagueGanYu.exe`。
+
+### v1.3.7-1 更新内容
+
+- 完善 QQ 账号管理：多账户录入、批量封禁/段位查询
+- QQ 号点击复制：表格及查询结果中 QQ 号点即复制
+- 界面优化：批量操作按钮移至标题栏
+- 构建切换为便携版（exe/zip），免安装
+- 完善 i18next-vue 类型声明，修复类型检查错误
 
 ---
 
