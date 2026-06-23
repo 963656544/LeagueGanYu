@@ -7,7 +7,12 @@
           <span class="title-label">{{ t('QQAccount.title') }}</span>
         </div>
         <div class="title-right">
-
+          <NButton size="small" type="warning" @click="handleBatchBanAll" :loading="bulkBanLoading">
+            {{ t('QQAccount.action.batchBanAll') }}
+          </NButton>
+          <NButton size="small" type="info" @click="handleBatchRankAll" :loading="bulkRankLoading">
+            {{ t('QQAccount.action.batchRankAll') }}
+          </NButton>
         </div>
       </div>
       <NTabs v-model:value="currentTab" size="medium">

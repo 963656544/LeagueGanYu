@@ -21,13 +21,19 @@ asarUnpack:
   - resources/**
 win:
   target:
-    - portable
+    - nsis
     - zip
   artifactName: ${productName}-${version}-portable.${ext}
   executableName: LeagueGanYu
   icon: resources/LA_ICON.ico
-portable:
-  artifactName: ${productName}-${version}-portable.${ext}
+nsis:
+  oneClick: false
+  artifactName: ${productName}-${version}-Setup.${ext}
+  shortcutName: ${productName}
+  uninstallDisplayName: ${productName}
+  createDesktopShortcut: always
+  allowToChangeInstallationDirectory: true
+  perMachine: false
 
 npmRebuild: false
 publish:
