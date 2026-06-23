@@ -20,7 +20,8 @@ import { AiStatus as AiStatusIcon } from '@vicons/carbon'
 import { Tools as ToolsIcon } from '@vicons/fa'
 import {
   AnimalRabbit28Filled as AnimalRabbit28FilledIcon,
-  Games24Filled as Games24FilledIcon
+  Games24Filled as Games24FilledIcon,
+  PeopleTeam24Filled as PeopleTeam24FilledIcon
 } from '@vicons/fluent'
 import { AnalyticsRound as AnalyticsRoundIcon } from '@vicons/material'
 import { useTranslation } from 'i18next-vue'
@@ -82,6 +83,11 @@ const menu = computed(() => {
       key: 'toolkit',
       icon: renderIcon(ToolsIcon),
       name: t('SideBarMenu.toolkit')
+    },
+    {
+      key: 'qq-account',
+      icon: renderIcon(PeopleTeam24FilledIcon),
+      name: t('SideBarMenu.qq-account')
     },
     {
       key: 'test',

@@ -20,6 +20,7 @@ import { LeagueClientUxMain } from '@main/shards/league-client-ux'
 import { LoggerFactoryMain } from '@main/shards/logger-factory'
 import { MobxUtilsMain } from '@main/shards/mobx-utils'
 import { OngoingGameMain } from '@main/shards/ongoing-game'
+import { QQAccountMain } from '@main/shards/qq-account'
 import { RemoteConfigMain } from '@main/shards/remote-config'
 import { RendererDebugMain } from '@main/shards/renderer-debug'
 import { RespawnTimerMain } from '@main/shards/respawn-timer'
@@ -178,7 +179,7 @@ export function bootstrap() {
   AkariProtocolMain.register()
 
   logger.info({
-    message: `League Akari ${app.getVersion()}`,
+    message: `LeagueGanYu (based on League Akari) ${app.getVersion()}`,
     namespace: 'app'
   })
 
@@ -266,6 +267,7 @@ export function bootstrap() {
     manager.use(AutoSelectMain)
     manager.use(InGameSendMain)
     manager.use(OngoingGameMain)
+    manager.use(QQAccountMain)
     manager.use(RemoteConfigMain)
     manager.use(RespawnTimerMain)
     manager.use(SavedPlayerMain)

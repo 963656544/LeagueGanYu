@@ -2,6 +2,13 @@
   <div id="app-title-bar">
     <span class="app-name" v-if="as.isAdministrator">{{ t('appName') }} X</span>
     <span class="app-name" v-else>{{ t('appName') }}</span>
+    <span
+      class="akari-credit"
+      title="该项目完全基于 League Akari 二次开发，点击访问其 GitHub 仓库"
+      @click="openAkari"
+    >
+      ❤ 基于 League Akari
+    </span>
     <div class="divider" :class="{ invisible: !shouldShowDivider }" />
     <div class="shard-area">
       <Transition name="fade">
@@ -41,6 +48,10 @@ const ogs = useOngoingGameStore()
 const mhs = useMatchHistoryTabsStore()
 
 const { t } = useTranslation('common')
+
+function openAkari() {
+  window.open('https://github.com/LeagueAkari/LeagueAkari')
+}
 
 const shouldShowDivider = computed(() => {
   switch (route.name) {
@@ -85,6 +96,25 @@ const shouldShowDivider = computed(() => {
   margin-left: 8px;
 }
 
+.akari-credit {
+  margin-left: 10px;
+  padding: 2px 8px;
+  font-size: 11px;
+  border-radius: 9px;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+  background-color: rgba(244, 67, 54, 0.15);
+  color: #f48fb1;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  transition: all 0.2s;
+  user-select: none;
+
+  &:hover {
+    background-color: rgba(244, 67, 54, 0.3);
+    color: #ffc1da;
+  }
+}
+
 [data-theme='dark'] {
   .app-name {
     color: rgba(255, 255, 255, 0.8);
@@ -94,6 +124,14 @@ const shouldShowDivider = computed(() => {
 [data-theme='light'] {
   .app-name {
     color: rgba(0, 0, 0, 0.8);
+  }
+
+  .akari-credit {
+    color: #c62828;
+
+    &:hover {
+      color: #b71c1c;
+    }
   }
 }
 

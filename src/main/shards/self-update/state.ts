@@ -40,13 +40,17 @@ interface LastUpdateResult {
 export class SelfUpdateSettings {
   /**
    * 是否自动检查更新，检查到更新才会下载更新
+   *
+   * 自定義構建: 默認關閉
    */
-  autoCheckUpdates: boolean = true
+  autoCheckUpdates: boolean = false
 
   /**
    * 是否自动下载更新
+   *
+   * 自定義構建: 默認關閉
    */
-  autoDownloadUpdates: boolean = true
+  autoDownloadUpdates: boolean = false
 
   /**
    * 忽略的版本号

@@ -231,7 +231,8 @@ export class RemoteConfigMain implements IAkariShardInitDispose {
 
     this._updateAnnouncementTask.start(true)
     this._updateSgpLeagueServersTask.start(true)
-    this._updateLatestReleaseTask.start(true)
+    // 自定義構建: 關閉自動檢查更新（避免覆蓋本地修改）
+    // this._updateLatestReleaseTask.start(true)
 
     this._mobx.reaction(
       () => this._app.settings.locale,
@@ -239,7 +240,7 @@ export class RemoteConfigMain implements IAkariShardInitDispose {
         this._repo.setConfig({ locale: locale as 'zh-CN' | 'en' })
         this.state.setAnnouncement(null)
         this._updateAnnouncementTask.start(true)
-        this._updateLatestReleaseTask.start(true)
+        // this._updateLatestReleaseTask.start(true)
       },
       { delay: 1000 }
     )
@@ -252,7 +253,7 @@ export class RemoteConfigMain implements IAkariShardInitDispose {
         this.state.setAnnouncement(null)
         this._updateAnnouncementTask.start(true)
         this._updateSgpLeagueServersTask.start(true)
-        this._updateLatestReleaseTask.start(true)
+        // this._updateLatestReleaseTask.start(true)
       },
       { delay: 1000 }
     )

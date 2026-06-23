@@ -99,7 +99,7 @@ export class TrayMain implements IAkariShardInitDispose {
 
     this._contextMenu = Menu.buildFromTemplate([
       {
-        label: 'League Akari',
+        label: 'LeagueGanYu',
         type: 'normal',
         click: () => this._wm.mainWindow.showOrRestore()
       },
@@ -129,7 +129,7 @@ export class TrayMain implements IAkariShardInitDispose {
       this._quitTrayItem
     ])
 
-    this._tray.setToolTip('League Akari')
+    this._tray.setToolTip('LeagueGanYu')
     this._tray.setContextMenu(this._contextMenu)
     this._tray.addListener('click', () => this._wm.mainWindow.toggleMinimizedAndFocused())
   }

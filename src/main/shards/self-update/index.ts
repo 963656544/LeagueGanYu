@@ -35,7 +35,7 @@ export class SelfUpdateMain implements IAkariShardInitDispose {
   static DOWNLOAD_DIR_NAME = 'NewUpdates'
   static UPDATE_EXECUTABLE_NAME = 'akari-updater.exe'
   static NEW_VERSION_FLAG = 'NEW_VERSION_FLAG'
-  static EXECUTABLE_NAME = 'LeagueAkari.exe'
+  static EXECUTABLE_NAME = 'LeagueGanYu.exe'
   static UPDATE_PROGRESS_UPDATE_INTERVAL = 200
 
   public readonly settings = new SelfUpdateSettings()
@@ -538,6 +538,9 @@ export class SelfUpdateMain implements IAkariShardInitDispose {
 
   async onInit() {
     await this._handleState()
+    // 自定義構建: 強制覆蓋舊存儲值，禁用自動檢查/下載
+    await this._setting.set('autoCheckUpdates', false)
+    await this._setting.set('autoDownloadUpdates', false)
     await this._checkLastFailedUpdate()
     this._handleUpdateHttpProxy()
     this._handlePeriodicCheck()
@@ -552,7 +555,7 @@ export class SelfUpdateMain implements IAkariShardInitDispose {
     }
   }
 
-  private _createNotification(title = 'League Akari', text: string) {
+  private _createNotification(title = 'LeagueGanYu', text: string) {
     const notification = new Notification({
       title,
       body: text,

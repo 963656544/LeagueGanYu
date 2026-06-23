@@ -1,0 +1,63 @@
+{
+  "cSpell.words": [
+    "Akari",
+    "Akaza",
+    "bannable",
+    "borderless",
+    "cooldown",
+    "eune",
+    "Funami",
+    "gameflow",
+    "gitee",
+    "ibsg",
+    "insta",
+    "Kyoko",
+    "namesets",
+    "nexusblitz",
+    "Opgg",
+    "penta",
+    "Perkstyle",
+    "pickable",
+    "popconfirm",
+    "premade",
+    "PUUID",
+    "puuids",
+    "quadra",
+    "Quickplay",
+    "reconnectable",
+    "regen",
+    "respawn",
+    "RSBEGINNER",
+    "RSINTERMEDIATE",
+    "RSINTRO",
+    "spectatable",
+    "Spellbook",
+    "Subteam",
+    "tcls",
+    "ultbook",
+    "Unconfigured",
+    "UNRANKED",
+    "unspectatable",
+    "writability",
+    "Yuriyuri"
+  ],
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "tsconfig.json": "tsconfig.*.json, env.d.ts",
+    "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
+    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig, electron*"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "compile-hero.disable-compile-files-on-did-save-code": false
+}

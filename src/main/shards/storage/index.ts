@@ -8,10 +8,14 @@ import { DataSource, QueryRunner } from 'typeorm'
 import { AkariLogger, LoggerFactoryMain } from '../logger-factory'
 import { EncounteredGame } from './entities/EncounteredGame'
 import { Metadata } from './entities/Metadata'
+import { QQAccount } from './entities/QQAccount'
 import { SavedPlayer } from './entities/SavedPlayers'
 import { Setting } from './entities/Settings'
 import { v10_LA1_2_0initializationUpgrade } from './upgrades/version-10'
 import { v15_LA1_2_2Upgrade } from './upgrades/version-15'
+import { v16_LA1_3_8Upgrade } from './upgrades/version-16'
+import { v17_QQRankUpgrade } from './upgrades/version-17'
+import { v18_LA1_3_8Upgrade } from './upgrades/version-18'
 
 /**
  * 任何持久性存储的逻辑集成
@@ -20,7 +24,7 @@ import { v15_LA1_2_2Upgrade } from './upgrades/version-15'
 export class StorageMain implements IAkariShardInitDispose {
   static id = 'storage-main'
 
-  static LEAGUE_AKARI_DB_CURRENT_VERSION = 15
+  static LEAGUE_AKARI_DB_CURRENT_VERSION = 18
   static LEAGUE_AKARI_DB_FILENAME = 'LeagueAkari.db'
 
   private readonly _log: AkariLogger
@@ -29,7 +33,10 @@ export class StorageMain implements IAkariShardInitDispose {
 
   private readonly _upgrades = {
     10: v10_LA1_2_0initializationUpgrade,
-    15: v15_LA1_2_2Upgrade
+    15: v15_LA1_2_2Upgrade,
+    16: v16_LA1_3_8Upgrade,
+    17: v17_QQRankUpgrade,
+    18: v18_LA1_3_8Upgrade
   }
 
   get dataSource() {
@@ -43,7 +50,7 @@ export class StorageMain implements IAkariShardInitDispose {
       type: 'sqlite',
       database: join(app.getPath('userData'), StorageMain.LEAGUE_AKARI_DB_FILENAME),
       synchronize: false,
-      entities: [Metadata, SavedPlayer, Setting, EncounteredGame]
+      entities: [Metadata, SavedPlayer, Setting, EncounteredGame, QQAccount]
     })
   }
 

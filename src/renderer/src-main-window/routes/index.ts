@@ -35,6 +35,11 @@ const router = createRouter({
           component: () => import('@main-window/views/automation/Automation.vue')
         },
         {
+          name: 'qq-account',
+          path: '/qq-account',
+          component: () => import('@main-window/views/qq-account/QQAccount.vue')
+        },
+        {
           name: 'test',
           path: 'test',
           component: () => import('@main-window/views/test/Test.vue')

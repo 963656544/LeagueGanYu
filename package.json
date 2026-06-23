@@ -1,11 +1,11 @@
 {
-  "name": "league-akari",
+  "name": "league-ganyu",
   "version": "1.3.7",
   "author": {
     "name": "Hanxven",
     "email": "hanxven@gmail.com"
   },
-  "description": "League Akari",
+  "description": "LeagueGanYu (基于 League Akari 二次开发)",
   "main": "./out/main/main.js",
   "scripts": {
     "format": "prettier --write .",

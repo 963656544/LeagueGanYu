@@ -825,6 +825,7 @@ SideBarMenu:
   ongoing-game: 对局分析
   automation: 自动操作
   toolkit: 工具集
+  qq-account: 账号管理
   test: 测试
 
 SideBarFixed:
@@ -2271,3 +2272,57 @@ self-update-renderer:
     unpack-failed: 解压更新包失败
     waiting-for-restart: 更新包解压完成，应用关闭后将自动应用更新流程
     cancelButton: 取消
+
+QQAccount:
+  title: 账号管理
+  tab:
+    accounts: 账号列表
+    single: 单个查询
+    batch: 批量查询
+  field:
+    qq: QQ号
+    area: 大区
+    gameId: 游戏ID (name#tag)
+    batchPlaceholder: 每行一个 QQ 号（或以逗号 / 分号 / 空格分隔）
+    batchHint: 自动去重，逐个查询
+  col:
+    status: 状态
+    area: 大区
+    gameId: 游戏ID
+    rank: 段位
+    actions: 操作
+  action:
+    add: 添加
+    refresh: 刷新
+    query: 查询
+    batchQuery: 批量查询
+    batchBanAll: 封禁
+    batchRankAll: 段位
+    matchHistory: 战绩
+    copy: 复制
+    edit: 编辑
+    delete: 删除
+    save: 保存
+    cancel: 取消
+  status:
+    normal: 正常
+    banned: 已封禁
+    failed: 查询失败
+    pending: 未查询
+  msg:
+    qqRequired: 请输入有效的 QQ 号（5-13 位数字）
+    added: 已添加
+    deleted: 已删除
+    saved: 已保存
+    copied: 已复制
+    copyFailed: 复制失败
+    batchEmpty: 请输入至少一个 QQ 号
+    emptyAccounts: 暂无账号
+    batchBanDone: 封禁批量查询完成
+    batchRankDone: 段位批量查询完成
+    gameIdMissing: 该账号未填写游戏ID
+    lcuNotConnected: 游戏客户端未启动或未连接，请启动 League 客户端后再试。当前展示为上次查询结果。
+  history:
+    title: 查询历史（双击重新查询）
+  confirm:
+    delete: 确认删除此账号？

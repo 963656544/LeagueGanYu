@@ -823,6 +823,7 @@ SideBarMenu:
   ongoing-game: Ongoing Game
   automation: Automation
   toolkit: Toolkit
+  qq-account: QQ Accounts
   test: Test
 
 SideBarFixed:
@@ -2267,3 +2268,57 @@ self-update-renderer:
     unpack-failed: Failed to unpack the archive file
     waiting-for-restart: Updated applied. Restart the application to apply the update
     cancelButton: Cancel
+
+QQAccount:
+  title: QQ Accounts
+  tab:
+    accounts: Accounts
+    single: Single Query
+    batch: Batch Query
+  field:
+    qq: QQ number
+    area: Region
+    gameId: Game ID (name#tag)
+    batchPlaceholder: One QQ number per line (or separated by comma / semicolon / space)
+    batchHint: Auto-deduplicated; queried one by one
+  col:
+    status: Status
+    area: Region
+    gameId: Game ID
+    rank: Rank
+    actions: Actions
+  action:
+    add: Add
+    refresh: Refresh
+    query: Query
+    batchQuery: Batch Query
+    batchBanAll: Ban
+    batchRankAll: Rank
+    matchHistory: Match
+    copy: Copy
+    edit: Edit
+    delete: Delete
+    save: Save
+    cancel: Cancel
+  status:
+    normal: Normal
+    banned: Banned
+    failed: Failed
+    pending: Not queried
+  msg:
+    qqRequired: Please enter a valid QQ number (5-13 digits)
+    added: Added
+    deleted: Deleted
+    saved: Saved
+    copied: Copied
+    copyFailed: Copy failed
+    batchEmpty: Enter at least one QQ number
+    emptyAccounts: No accounts
+    batchBanDone: Ban batch query done
+    batchRankDone: Rank batch query done
+    gameIdMissing: This account has no Game ID
+    lcuNotConnected: League client is not running or not connected. Showing last query result.
+  history:
+    title: Recent queries (double-click to re-query)
+  confirm:
+    delete: Delete this account?

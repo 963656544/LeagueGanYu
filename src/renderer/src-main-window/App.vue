@@ -22,7 +22,33 @@
     </Transition>
     <MainWindowTitleBar />
     <div id="app-content"><RouterView /></div>
-    <div v-if="as.isRabiVersion" id="version-watermark">League Akari {{ as.version }}</div>
+    <div v-if="as.isRabiVersion" id="version-watermark">LeagueGanYu {{ as.version }}</div>
+
+    <NModal
+      v-model:show="showFirstLaunchModal"
+      preset="card"
+      :mask-closable="false"
+      :closable="false"
+      style="width: 520px"
+      title="致谢 League Akari"
+    >
+      <div class="first-launch-content">
+        <p class="first-launch-line">
+          该项目（<strong>LeagueGanYu</strong>）完全基于
+          <strong>League Akari</strong> 二次开发，原项目作者付出了大量心血。
+        </p>
+        <p class="first-launch-line">
+          如果您觉得满意，请为 ta 点一个 ⭐ Star，作为对原作者的鼓励。
+        </p>
+        <p class="first-launch-link" @click="openAkariRepo">
+          🔗 https://github.com/LeagueAkari/LeagueAkari
+        </p>
+        <div class="first-launch-actions">
+          <NButton type="primary" @click="confirmAkariNotice">访问并关闭</NButton>
+          <NButton @click="dismissAkariNotice">仅关闭</NButton>
+        </div>
+      </div>
+    </NModal>
   </div>
 </template>
 
@@ -35,8 +61,8 @@ import { useAppCommonStore } from '@renderer-shared/shards/app-common/store'
 import { SetupInAppScope } from '@renderer-shared/shards/setup-in-app-scope/comp'
 import { greeting } from '@renderer-shared/utils/greeting'
 import { useTranslation } from 'i18next-vue'
-import { useMessage, useNotification } from 'naive-ui'
-import { provide, ref } from 'vue'
+import { NButton, NModal, useMessage, useNotification } from 'naive-ui'
+import { onMounted, provide, ref } from 'vue'
 import { h } from 'vue'
 
 import SettingsModal from './components/settings-modal/SettingsModal.vue'
@@ -89,6 +115,32 @@ useKeyboardCombo('AKARI', {
 })
 
 const backgroundImageUrl = mui.usePreferredBackgroundImageUrl()
+
+// ===== 首啟 Akari 致謝彈窗 =====
+const FIRST_LAUNCH_KEY = 'akari-credit-notice-shown'
+const showFirstLaunchModal = ref(false)
+
+function openAkariRepo() {
+  window.open('https://github.com/LeagueAkari/LeagueAkari')
+}
+
+function confirmAkariNotice() {
+  openAkariRepo()
+  dismissAkariNotice()
+}
+
+function dismissAkariNotice() {
+  localStorage.setItem(FIRST_LAUNCH_KEY, '1')
+  showFirstLaunchModal.value = false
+}
+
+onMounted(() => {
+  if (!localStorage.getItem(FIRST_LAUNCH_KEY)) {
+    setTimeout(() => {
+      showFirstLaunchModal.value = true
+    }, 500)
+  }
+})
 </script>
 
 <style lang="less">
@@ -169,6 +221,44 @@ const backgroundImageUrl = mui.usePreferredBackgroundImageUrl()
 
   .background-wallpaper.no-image::before {
     background: none;
+  }
+}
+
+.first-launch-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .first-launch-line {
+    margin: 0;
+    line-height: 1.7;
+    font-size: 14px;
+  }
+
+  .first-launch-link {
+    margin: 4px 0 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #ff8ab1;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px dashed rgba(244, 67, 54, 0.4);
+    transition: all 0.2s;
+    word-break: break-all;
+
+    &:hover {
+      background-color: rgba(244, 67, 54, 0.2);
+      color: #ffc1da;
+    }
+  }
+
+  .first-launch-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 8px;
   }
 }
 
