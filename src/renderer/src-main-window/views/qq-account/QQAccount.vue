@@ -6,14 +6,7 @@
           <NIcon class="title-icon"><PeopleTeamIcon /></NIcon>
           <span class="title-label">{{ t('QQAccount.title') }}</span>
         </div>
-        <div class="title-right">
-          <NButton size="small" type="warning" @click="handleBatchBanAll" :loading="bulkBanLoading">
-            {{ t('QQAccount.action.batchBanAll') }}
-          </NButton>
-          <NButton size="small" type="info" @click="handleBatchRankAll" :loading="bulkRankLoading">
-            {{ t('QQAccount.action.batchRankAll') }}
-          </NButton>
-        </div>
+        <div class="title-right" />
       </div>
       <NTabs v-model:value="currentTab" size="medium">
         <NTab name="accounts" :tab="t('QQAccount.tab.accounts')" />
@@ -52,7 +45,12 @@
           <NButton @click="loadAccounts" :loading="loading">
             {{ t('QQAccount.action.refresh') }}
           </NButton>
-
+          <NButton size="small" type="warning" @click="handleBatchBanAll" :loading="bulkBanLoading">
+            {{ t('QQAccount.action.batchBanAll') }}
+          </NButton>
+          <NButton size="small" type="info" @click="handleBatchRankAll" :loading="bulkRankLoading">
+            {{ t('QQAccount.action.batchRankAll') }}
+          </NButton>
         </div>
 
         <div
