@@ -4,6 +4,8 @@ directories:
   buildResources: build
 files:
   - '!**/.vscode/*'
+  - '!.codegraph/*'
+  - '!.idea/*'
   - '!src/*'
   - '!electron.vite.config.{js,ts,mjs,cjs}'
   - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md,README-en.md,FAQ.md}'
@@ -19,19 +21,13 @@ asarUnpack:
   - resources/**
 win:
   target:
-    - nsis
-    - 7z
+    - portable
+    - zip
   artifactName: ${productName}-${version}-portable.${ext}
   executableName: LeagueGanYu
   icon: resources/LA_ICON.ico
-nsis:
-  oneClick: false
-  artifactName: ${productName}-${version}-Setup.${ext}
-  shortcutName: ${productName}
-  uninstallDisplayName: ${productName}
-  createDesktopShortcut: always
-  allowToChangeInstallationDirectory: true
-  perMachine: false
+portable:
+  artifactName: ${productName}-${version}-portable.${ext}
 
 npmRebuild: false
 publish:

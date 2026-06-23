@@ -6,13 +6,8 @@
           <NIcon class="title-icon"><PeopleTeamIcon /></NIcon>
           <span class="title-label">{{ t('QQAccount.title') }}</span>
         </div>
-        <div class="title-actions" v-show="currentTab === 'accounts'">
-          <NButton size="small" type="warning" @click="handleBatchBanAll" :loading="bulkBanLoading">
-            {{ t('QQAccount.action.batchBanAll') }}
-          </NButton>
-          <NButton size="small" type="info" @click="handleBatchRankAll" :loading="bulkRankLoading">
-            {{ t('QQAccount.action.batchRankAll') }}
-          </NButton>
+        <div class="title-right">
+
         </div>
       </div>
       <NTabs v-model:value="currentTab" size="medium">
@@ -52,17 +47,26 @@
           <NButton @click="loadAccounts" :loading="loading">
             {{ t('QQAccount.action.refresh') }}
           </NButton>
+
         </div>
 
-        <NDataTable
-          :columns="columns"
-          :data="accounts"
-          :bordered="false"
-          :loading="loading"
-          size="small"
-          :row-key="(row: QQAccountDto) => row.id"
+        <div
           class="accounts-table"
-        />
+          @dragstart="onRowDragStart"
+          @dragover="onRowDragOver"
+          @drop="onRowDrop"
+          @dragend="onRowDragEnd"
+        >
+          <NDataTable
+            :columns="columns"
+            :data="accounts"
+            :bordered="false"
+            :loading="loading"
+            size="small"
+            :row-key="(row: QQAccountDto) => row.id"
+            :row-props="rowProps"
+          />
+        </div>
       </div>
 
       <!-- 單個封禁查詢 -->
@@ -82,11 +86,11 @@
         <div class="result-box">
           <div v-if="singleResult" :class="['result-line', singleResult.isBanned ? 'banned' : 'normal']">
             <template v-if="singleResult.isBanned">
-              <strong>{{ singleResult.qq }}</strong> · {{ t('QQAccount.status.banned') }} ·
+              <strong class="clickable" @click="copyQQ(singleResult.qq)">{{ singleResult.qq }}</strong> · {{ t('QQAccount.status.banned') }} ·
               {{ singleResult.banUntil }} | {{ singleResult.banRemaining }}
             </template>
             <template v-else>
-              <strong>{{ singleResult.qq }}</strong> · {{ t('QQAccount.status.normal') }}
+              <strong class="clickable" @click="copyQQ(singleResult.qq)">{{ singleResult.qq }}</strong> · {{ t('QQAccount.status.normal') }}
             </template>
           </div>
           <div v-else-if="singleError" class="result-line error">{{ singleError }}</div>
@@ -282,6 +286,13 @@ function handleCopyGameId(row: QQAccountDto) {
   )
 }
 
+function copyQQ(qq: string) {
+  navigator.clipboard.writeText(qq).then(
+    () => message.success(t('QQAccount.msg.copied')),
+    () => message.error(t('QQAccount.msg.copyFailed'))
+  )
+}
+
 async function handleOpenMatchHistory(row: QQAccountDto) {
   if (!row.gameId) {
     message.warning(t('QQAccount.msg.gameIdMissing'))
@@ -390,12 +401,84 @@ async function handleBatchRankAll() {
 }
 
 // ===== 表格列 =====
+const dragIndex = ref(-1)
+
+function rowProps(_row: QQAccountDto, index: number) {
+  return {
+    draggable: true as any,
+    'data-row-index': index
+  }
+}
+
+function onRowDragStart(e: DragEvent) {
+  const tr = (e.target as HTMLElement).closest('tr')
+  if (!tr) return
+  dragIndex.value = parseInt(tr.dataset.rowIndex || '-1')
+  if (e.dataTransfer) {
+    e.dataTransfer.effectAllowed = 'move'
+    e.dataTransfer.setData('text/plain', '')
+  }
+}
+
+function onRowDragOver(e: DragEvent) {
+  e.preventDefault()
+  if (e.dataTransfer) e.dataTransfer.dropEffect = 'move'
+}
+
+async function onRowDrop(e: DragEvent) {
+  e.preventDefault()
+  const tr = (e.target as HTMLElement).closest('tr')
+  if (!tr || dragIndex.value < 0) return
+  const dropIdx = parseInt(tr.dataset.rowIndex || '-1')
+  if (dropIdx < 0 || dropIdx === dragIndex.value) {
+    dragIndex.value = -1
+    return
+  }
+  const items = [...accounts.value]
+  const [moved] = items.splice(dragIndex.value, 1)
+  items.splice(dropIdx, 0, moved)
+  accounts.value = items
+  dragIndex.value = -1
+  try {
+    await qqAccount.reorderAccounts(items.map((a) => a.id))
+  } catch (err: any) {
+    message.error(err?.message || String(err))
+    await loadAccounts()
+  }
+}
+
+function onRowDragEnd() {
+  dragIndex.value = -1
+}
+
 const columns = computed<DataTableColumns<QQAccountDto>>(() => [
+  {
+    title: '',
+    key: 'drag-handle',
+    width: 36,
+    render: () =>
+      h('span', { class: 'drag-handle-icon', innerHTML: '&#x2630;' })
+  },
   {
     title: 'QQ',
     key: 'qq',
     width: 140,
-    render: (row) => h('span', { class: 'mono' }, row.qq)
+    render: (row) =>
+      h(
+        'span',
+        {
+          class: 'mono clickable',
+          style: 'cursor: pointer; text-decoration: underline dotted rgba(160,160,160,0.5)',
+          title: '点击复制',
+          onClick: () => {
+            navigator.clipboard.writeText(row.qq).then(
+              () => message.success(t('QQAccount.msg.copied')),
+              () => message.error(t('QQAccount.msg.copyFailed'))
+            )
+          }
+        },
+        row.qq
+      )
   },
   {
     title: t('QQAccount.col.status'),
@@ -600,9 +683,10 @@ onMounted(() => {
       }
     }
 
-    .title-actions {
+    .title-right {
       display: flex;
       gap: 8px;
+      align-items: center;
     }
   }
 }
@@ -630,6 +714,26 @@ onMounted(() => {
 .accounts-table {
   flex: 1;
   min-height: 0;
+
+  :deep(.drag-handle-icon) {
+    cursor: grab;
+    color: rgba(160, 160, 160, 0.6);
+    font-size: 16px;
+    line-height: 1;
+    user-select: none;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  :deep(tr[draggable='true']) {
+    cursor: default;
+
+    &.drag-over {
+      background: rgba(100, 180, 255, 0.1);
+    }
+  }
 }
 
 :deep(.action-cell) {
@@ -683,6 +787,15 @@ onMounted(() => {
       &.error {
         background: rgba(255, 152, 0, 0.12);
         color: #ff9800;
+      }
+    }
+
+    .clickable {
+      cursor: pointer;
+      text-decoration: underline dotted rgba(160, 160, 160, 0.5);
+
+      &:hover {
+        color: #66b1ff;
       }
     }
   }
