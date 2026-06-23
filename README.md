@@ -1,62 +1,71 @@
 <div align="center">
   <div>
     <img
-    src="https://github.com/LeagueAkari/LeagueAkari/raw/HEAD/pictures/logo.png"
+    src="resources/LA_ICON.png"
     width="128"
     height="128"
     />
   </div>
-  A League of Legends client toolkit based on the LCU API
+  <h1>League GanYu</h1>
+  <p>基于 <a href="https://github.com/Hanxven/LeagueAkari">League Akari</a> 二次开发的英雄联盟客户端工具箱</p>
 </div>
 
 <p align="center">
-    <a href="https://github.com/LeagueAkari/LeagueAkari/releases"><img src="https://img.shields.io/github/release/LeagueAkari/LeagueAkari.svg?style=flat-square&maxAge=600" alt="Downloads"></a>
-    <a href="https://github.com/LeagueAkari/LeagueAkari/releases">
-    <img src="https://img.shields.io/github/downloads/LeagueAkari/LeagueAkari/total?style=flat&label=Downloads"></a>
-    <a href="https://github.com/LeagueAkari/LeagueAkari/stargazers">
-    <img src="https://img.shields.io/github/stars/LeagueAkari/LeagueAkari?style=flat&label=Stars">
+    <a href="https://github.com/963656544/LeagueGanYu/releases"><img src="https://img.shields.io/github/release/963656544/LeagueGanYu.svg?style=flat-square&maxAge=600" alt="Release"></a>
+    <a href="https://github.com/963656544/LeagueGanYu/releases">
+    <img src="https://img.shields.io/github/downloads/963656544/LeagueGanYu/total?style=flat&label=Downloads"></a>
+    <a href="https://github.com/963656544/LeagueGanYu/stargazers">
+    <img src="https://img.shields.io/github/stars/963656544/LeagueGanYu?style=flat&label=Stars">
   </a>
 </p>
 
-# 1. League Akari
+---
 
-A League of Legends client toolkit based on the LCU API.
+## 关于本项目
 
-## 1.2 Usage Instructions
+**League GanYu**（甘雨）是一款基于 LCU API 的英雄联盟客户端辅助工具，由 [League Akari](https://github.com/Hanxven/LeagueAkari) 二次开发而来。
 
-Admin privileges are not required to run, but they enable additional features.
+原项目 **League Akari** 由 [Hanxven](https://github.com/Hanxven) 开发，提供了强大的 LCU 框架、自动选择、自动流程、战绩查询等核心功能。本项目在其基础上进行了功能扩展，主要面向国服（腾讯）玩家增加实用特性。
 
-Supports most of the riot servers (not including Tencent).
+> 感谢 [League Akari](https://github.com/Hanxven/LeagueAkari) 及其所有贡献者提供的优秀框架。
 
-## 1.3 Feedback Group
+---
 
-Fun places for casual chats, party setups, bug reports, and suggestions.
+## 新增功能（相比原版 Akari）
 
-QQ Group: [301157623](https://qm.qq.com/q/F1Xv85etlm) (Passcode: akari)
+### QQ 账号管理
 
-Telegram Group: [@LeagueAkari](https://t.me/leagueakari)
+一站式管理多个 QQ 账号，支持以下能力：
 
-## 1.4 Beta Versions (.rabi)
+| 功能 | 说明 |
+|------|------|
+| 账号绑定 | 添加 QQ 号 + 大区 + 游戏 ID（Riot ID），支持全部 29 个大区 |
+| 封禁查询 | 单个或批量查询 QQ 号封禁状态、解封时间、剩余天数 |
+| 段位查询 | 批量查询所有账号当前段位（单双排 / 灵活排位 / 云顶），自动匹配当前客户端大区 |
+| 拖拽排序 | 自定义账号排列顺序，拖拽即可调整 |
+| 状态持久化 | 封禁状态、段位信息本地存储，重启不丢失 |
 
-"rabi" versions with features slated for the next release are periodically shared in the group chat.
+### 其他改进
 
-# 2. Contributing to Development
+- 新增应用图标
+- 国际化完善（中英文）
 
-Issues are inevitable; as a user, you can:
+---
 
-## 2.1 GitHub Issues
+## 原版功能（来自 League Akari）
 
-GitHub Issues is the primary channel for feedback. Please clearly describe your requirements, issues, or suggestions.
+- 自动接受对局
+- 自动选择 / Ban 英雄
+- 自动流程（排队、准备等）
+- 战绩查询与玩家分析
+- 英雄选择建议（智能选人）
+- 客户端窗口管理
+- 自动更新
+- 系统托盘集成
 
-## 2.2 Contribute Code
+---
 
-Interested in the project? Feel free to contribute by submitting PRs and adding new features.
-
-# 3. Build & Run
-
-This section describes how to build League Akari from the source code.
-
-## 3.1 Electron Main Program
+## 构建与运行
 
 ```bash
 yarn install
@@ -64,35 +73,22 @@ yarn dev
 yarn build:win
 ```
 
-## Private Packages
+需要有效的 GitHub PAT 来安装私有包，设置环境变量 `NODE_AUTH_TOKEN`。
 
-A valid GitHub PAT is required to install private packages.
+---
 
-`NODE_AUTH_TOKEN` must be set to the PAT value.
+## 免责声明
 
-## 4. References
+本软件基于 Riot Games 的 LCU API 开发，不使用侵入式技术，不直接修改游戏数据。使用本软件可能导致账号封禁或数据丢失等风险，开发者不承担任何责任。**本应用未经 Riot Games 官方认可或支持**，使用即表示您了解并接受相关风险。
 
-The development of **League Akari** has been greatly inspired by several outstanding open-source projects. These projects provided valuable insights and guidance for various modules of the software. We would like to extend our sincere appreciation to the authors and maintainers of the following resources:
+---
 
-| Project                                                                                            | Description                                                                          |
-| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| [Pengu Loader](https://github.com/PenguLoader/PenguLoader)                                         | The ultimate JavaScript plugin loader, build your unmatched LoL Client.              |
-| [League of Legends LCU and Riot Client API Docs](https://github.com/KebsCS/lcu-and-riotclient-api) | League of Legends LCU and Riot Client API Docs                                       |
-| [Community Dragon](https://www.communitydragon.org/documentation/assets)                           | Resource management and asset documentation reference.                               |
-| [Seraphine](https://github.com/Zzaphkiel/Seraphine)                                                | Provided integration approaches and insights into combining multiple tools.          |
-| [fix-lcu-window](https://github.com/LeagueTavern/fix-lcu-window)                                   | Resolved the issue with abnormal window size of the League of Legends client.        |
-| [Joi](https://github.com/watchingfun/Joi)                                                          | A League of Legends assistant. tool                                                  |
-| [vscode-league-respawn-timer](https://github.com/Coooookies/vscode-league-respawn-timer)           | An extension to display League of Legends player respawn time in Visual Studio Code. |
-| [LeaguePrank](https://github.com/LeagueTavern/LeaguePrank)                                         | Provided inspiration for playful and humorous features.                              |
+## 致谢
 
-# 5. Disclaimer
-
-This software is a tool developed based on Riot's League Client Update (LCU) API. It does not use intrusive techniques and theoretically does not directly interfere with or modify game data. However, please be aware of potential compatibility issues or risks associated with game updates or anti-cheat systems.
-
-The developer is not responsible for any consequences, such as account bans or data loss, resulting from the use of this software. Users are advised to fully understand the risks and take responsibility for their actions.
-
-Additionally, **this application is not officially supported or endorsed by Riot Games**, all right reserved by Riot Games. Use it at your own risk, as it may violate the game's terms of service.
-
-This disclaimer is intended to provide transparency and enable users to make informed decisions. Thank you for your understanding, and please ensure fair play in the gaming environment.
-
-[![Star History Chart](https://api.star-history.com/svg?repos=LeagueAkari/LeagueAkari&type=Date)](https://star-history.com/#LeagueAkari/LeagueAkari&Date)
+| 项目 | 说明 |
+|------|------|
+| [League Akari](https://github.com/Hanxven/LeagueAkari) | 本项目的基础框架 |
+| [Pengu Loader](https://github.com/PenguLoader/PenguLoader) | JavaScript 插件加载器 |
+| [Seraphine](https://github.com/Zzaphkiel/Seraphine) | 工具集成思路 |
+| [Community Dragon](https://www.communitydragon.org/documentation/assets) | 资源管理参考 |
+| [fix-lcu-window](https://github.com/LeagueTavern/fix-lcu-window) | 客户端窗口修复 |
